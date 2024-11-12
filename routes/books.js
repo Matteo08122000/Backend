@@ -66,7 +66,7 @@ books.get("/books", async (req, res) => {
   }
 });
 
-books.post("/books/create", [validateBook], async (req, res) => {
+books.post("/books/create", async (req, res) => {
   const { page = 1, pageSize = 10 } = req.query;
 
   try {
