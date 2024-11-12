@@ -22,9 +22,11 @@ server.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 server.use(express.json());
 server.use(
   cors({
-    origin:
+    origin: [
       "https://epicbookfrontend-pdvqvabr6e-matteo08212006-projects.vercel.app",
-      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+      "https://epibookfrontend-kbepxq0hr-matteo08122000s-projects.vercel.app",
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
 
