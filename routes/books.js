@@ -66,18 +66,30 @@ books.get("/books", async (req, res) => {
   }
 });
 
-books.post("/books/create", async (req, res) => {
+books.post("/books/create", [validateBook], async (req, res) => {
   const { page = 1, pageSize = 10 } = req.query;
 
   try {
-   const newbook = new BooksModel(req.body);
-   await newbook.save();
-    
+    const books = await BooksModel.find()
+      .limit(pageSize)
+      .skip((page - 1) * pageSize);
+
+    const count = await BooksModel.countDocuments();
+    const totalPages = Math.ceil(count / pageSize);
+
+    if (books.length === 0) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: "No books found",
+      });
+    }
 
     res.status(200).send({
       statusCode: 200,
-      message: "Books created successfully",
-     
+      message: `Books found: ${books.length}`,
+      count,
+      totalPages,
+      books,
     });
   } catch (error) {
     res.status(500).send({
