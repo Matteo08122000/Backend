@@ -21,14 +21,15 @@ server.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
 server.use(express.json());
 server.use(
-  cors({
-    origin: [
-      "https://epicbookfrontend-pdvqvabr6e-matteo08212006-projects.vercel.app",
-      "https://epibookfrontend-kbepxq0hr-matteo08122000s-projects.vercel.app",
-    ],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  })
-);
+    cors({
+      origin: [
+        "https://epicbookfrontend-pdvqvabr6e-matteo08212006-projects.vercel.app",
+        "https://epibookfrontend-kbepxq0hr-matteo08122000s-projects.vercel.app",
+      ],
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    })
+  );
+  
 
 server.use("/", useresRoute);
 server.use("/", books);
