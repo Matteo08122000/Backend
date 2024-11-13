@@ -81,7 +81,7 @@ github.get(
   passport.authenticate("github", { scope: ["user:email"] }),
   (req, res, next) => {
     const redirectUrl = `${
-      process.env.FRONTEND_URL
+      process.env.GITHUB_CALLBACK_URL
     }/success?user=${encodeURIComponent(JSON.stringify(req.user))}`;
     res.redirect(redirectUrl);
   }
