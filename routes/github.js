@@ -56,7 +56,7 @@ github.get(
   (req, res, next) => {
     const user = req.user;
 
-    const token = jwt.sign(userPayload, process.env.JWT_SECRET);
+    const token = jwt.sign(user, process.env.JWT_SECRET);
     const redirectUrl = `${
       process.env.FRONTEND_URL
     }/success/${encodeURIComponent(token)}`;
