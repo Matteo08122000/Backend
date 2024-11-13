@@ -67,9 +67,10 @@ books.get("/books", async (req, res) => {
 });
 
 books.post("/books/create", async (req, res) => {
+  const { page = 1, pageSize = 10 } = req.query;
 
   try {
-    const newbook = new BooksModel(req.query);
+    const newbook = new BooksModel(req.body);
     await newbook.save();
 
     if (newbook) {
@@ -83,7 +84,7 @@ books.post("/books/create", async (req, res) => {
         message: "Bad request",
       });
     }
-
+    
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
