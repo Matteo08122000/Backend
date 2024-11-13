@@ -64,4 +64,8 @@ google.get(
   }
 );
 
+google.get("/success", (req, res) => {
+  res.redirect(`${process.env.FRONTEND_URL}/home`);
+});
+
 module.exports = google;
