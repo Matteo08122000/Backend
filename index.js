@@ -23,8 +23,10 @@ server.use(express.json());
 
 const corsOptions = {
   origin: "https://epibookfrontend.vercel.app",
-  credentials: true,
+  methods: "GET,POST,PUT,PATCH,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
 };
+
 server.use(cors(corsOptions));
 
 server.use("/", useresRoute);
