@@ -45,7 +45,7 @@ google.get(
   passport.authenticate("google", { scope: ["email", "profile"] }),
   (req, res) => {
     const redirectUrl = `${
-      process.env.GOOGLE_CALLBACK_URL
+      process.env.FRONTEND_URL
     }/success?user=${encodeURIComponent(JSON.stringify(req.user))}`;
     res.redirect(redirectUrl);
   }
@@ -58,7 +58,7 @@ google.get(
     const user = req.user;
     const token = jwt.sign(user, process.env.JWT_SECRET);
     const redirectUrl = `${
-      process.env.GOOGLE_CALLBACK_URL
+      process.env.FRONTEND_URL
     }/success/${encodeURIComponent(token)}`;
     res.redirect(redirectUrl);
   }
