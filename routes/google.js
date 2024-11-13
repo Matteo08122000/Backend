@@ -58,7 +58,7 @@ google.get(
     const user = req.user;
     const token = jwt.sign(user, process.env.JWT_SECRET);
     const redirectUrl = `${
-      process.env.FRONTEND_URL
+      process.env.GOOGLE_CALLBACK_URL
     }/success/${encodeURIComponent(token)}`;
     res.redirect(redirectUrl);
   }

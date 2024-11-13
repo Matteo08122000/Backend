@@ -102,14 +102,14 @@ github.get(
 
     const token = jwt.sign(userPayload, process.env.JWT_SECRET);
     const redirectUrl = `${
-      process.env.FRONTEND_URL
+      process.env.GITHUB_CALLBACK_URL
     }/success/${encodeURIComponent(token)}`;
     res.redirect(redirectUrl);
   }
 );
 
 github.get("/success", (req, res) => {
-  res.redirect("${process.env.FRONTEND_URL}/home");
+  res.redirect(`${process.env.GITHUB_CALLBACK_URL}/home`);
 });
 
 module.exports = github;
