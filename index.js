@@ -20,16 +20,7 @@ const server = express();
 server.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
 server.use(express.json());
-
-const corsOptions = {
-  origin:
-    "https://epibookfrontend-asnb0v51j-matteo08122000s-projects.vercel.app",
-  methods: "GET,POST,PUT,PATCH,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-  credentials: true,
-};
-
-server.use(cors(corsOptions));
+server.use(cors());
 
 server.use("/", useresRoute);
 server.use("/", books);
