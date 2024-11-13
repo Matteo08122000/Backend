@@ -37,7 +37,10 @@ passport.use(
     function (accessToken, refreshToken, profile, done) {
       console.log("Dati utente", profile);
 
-    
+    }
+  )
+);
+
 github.get(
   "/auth/github",
   passport.authenticate("github", { scope: ["user:email"] }),
