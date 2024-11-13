@@ -81,7 +81,7 @@ github.get(
   passport.authenticate("github", { scope: ["user:email"] }),
   (req, res, next) => {
     const redirectUrl = `${
-      process.env.GITHUB_CALLBACK_URL
+      process.env.FRONTEND_URL
     }/success?user=${encodeURIComponent(JSON.stringify(req.user))}`;
     res.redirect(redirectUrl);
   }
@@ -102,14 +102,14 @@ github.get(
 
     const token = jwt.sign(userPayload, process.env.JWT_SECRET);
     const redirectUrl = `${
-      process.env.GITHUB_CALLBACK_URL
+      process.env.FRONTEND_URL
     }/success/${encodeURIComponent(token)}`;
     res.redirect(redirectUrl);
   }
 );
 
 github.get("/success", (req, res) => {
-  res.redirect(`${process.env.GITHUB_CALLBACK_URL}/home`);
+  res.redirect(`${process.env.FRONTEND_URL}/home`);
 });
 
 module.exports = github;
