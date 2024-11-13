@@ -22,7 +22,7 @@ server.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 server.use(express.json());
 
 const corsOptions = {
-  origin: "https://epibookfrontend.vercel.app/",
+  origin: "https://epibookfrontend.vercel.app",
   credentials: true,
 };
 server.use(cors(corsOptions));
