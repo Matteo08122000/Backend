@@ -37,45 +37,7 @@ passport.use(
     function (accessToken, refreshToken, profile, done) {
       console.log("Dati utente", profile);
 
-      // dati necessari dal profilo GitHub
-      const userData = {
-        githubId: profile.id,
-        username: profile.username,
-        email:
-          profile.emails && profile.emails.length > 0
-            ? profile.emails[0].value
-            : null,
-      };
-
-      // Verifica se l'utente esiste già nel database
-      gitHubuser
-        .findOne({ githubId: userData.githubId })
-        .then((existingUser) => {
-          if (existingUser) {
-            // Se l'utente esiste, ritrona  il profilo
-            return done(null, existingUser);
-          } else {
-            // Se l'utente non esiste, ne creo uno nuovo
-            const newUser = new gitHubuser(userData);
-            return newUser
-              .save()
-              .then((savedUser) => {
-                return done(null, savedUser);
-              })
-              .catch((err) => {
-                console.error("Errore nel salvataggio dell'utente:", err);
-                return done(err, null);
-              });
-          }
-        })
-        .catch((err) => {
-          console.error("Errore nella ricerca dell'utente:", err);
-          return done(err, null);
-        });
-    }
-  )
-);
-
+    
 github.get(
   "/auth/github",
   passport.authenticate("github", { scope: ["user:email"] }),
