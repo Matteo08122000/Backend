@@ -67,23 +67,20 @@ books.get("/books", async (req, res) => {
 });
 
 books.post("/books/create", async (req, res) => {
-  const { page = 1, pageSize = 10 } = req.query;
-
+  console.log("Received book data:", req.body); 
   try {
-   const newbook = new BooksModel(req.body);
-   await newbook.save();
-    
-
-    res.status(200).send({
-      statusCode: 200,
-      message: "Books created successfully",
-     
-    });
+     const newbook = new BooksModel(req.body);
+     await newbook.save();
+     res.status(200).send({
+        statusCode: 200,
+        message: "Books created successfully",
+     });
   } catch (error) {
-    res.status(500).send({
-      statusCode: 500,
-      message: "Internal server error",
-    });
+     console.error("Error during book creation:", error);  
+     res.status(500).send({
+        statusCode: 500,
+        message: "Internal server error",
+     });
   }
 });
 
