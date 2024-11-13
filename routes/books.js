@@ -73,12 +73,14 @@ books.post("/books/create", async (req, res) => {
    const newbook = new BooksModel(req.body);
    await newbook.save();
     
-
-    res.status(200).send({
-      statusCode: 200,
-      message: "Books created successfully",
-     
-    });
+    if(!books) {
+      res.status(200).send({
+        statusCode: 200,
+        message: "Books created successfully",
+       
+      });
+    }
+    
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
